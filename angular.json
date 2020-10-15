@@ -117,8 +117,16 @@
               "devServerTarget": "Eshop-project:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "Eshop-project"
+    }
+  },
+  "defaultProject": "Eshop-project",
+  "cli": {
+    "analytics": "7535dc59-2cfc-43b4-b5ca-85672e842491"
+  }
 }
