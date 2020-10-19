@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { environment } from 'src/environments/environment';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -33,11 +37,13 @@ import { environment } from 'src/environments/environment';
     RouterModule.forRoot([
       {path: '' , component: HomeComponent },
       {path: 'Login' , component: LoginComponent },
-      {path: 'Products' , component: ProductsComponent }
+      {path: 'Products' , component: ProductsComponent,canActivate: [AuthGuardService]  },
+      {path: 'Orders' , component: OrdersComponent}
+
 
     ])
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
