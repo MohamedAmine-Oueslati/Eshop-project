@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +37,8 @@ import { OrdersComponent } from './orders/orders.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    // AngularFirestore,
+    AngularFirestoreModule,
     RouterModule.forRoot([
       {path: '' , component: HomeComponent },
       {path: 'Login' , component: LoginComponent },
