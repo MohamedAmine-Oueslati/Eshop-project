@@ -20,6 +20,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { OrdersComponent } from './orders/orders.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { NewProductComponent } from './new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { OrdersComponent } from './orders/orders.component';
     HomeComponent,
     LoginComponent,
     ProductsComponent,
-    OrdersComponent
+    OrdersComponent,
+    ManageProductsComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,9 @@ import { OrdersComponent } from './orders/orders.component';
       {path: '' , component: HomeComponent },
       {path: 'Login' , component: LoginComponent },
       {path: 'Products' , component: ProductsComponent,canActivate: [AuthGuardService]  },
-      {path: 'Orders' , component: OrdersComponent}
-
-
+      {path: 'Orders' , component: OrdersComponent},
+      {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]},
+      {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]}
     ])
   ],
   providers: [AuthService, AuthGuardService],
