@@ -12,7 +12,7 @@ export class ManageProductsComponent implements OnInit {
   constructor(private productService:ProductService,) { }
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe(res => this.products = res)
+    this.productService.products.subscribe(res => this.products = res)
   }
 
 }

@@ -55,8 +55,9 @@ import { NewProductComponent } from './new-product/new-product.component';
       {path: 'Login' , component: LoginComponent },
       {path: 'Products' , component: ProductsComponent,canActivate: [AuthGuardService]  },
       {path: 'Orders' , component: OrdersComponent},
-      {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]},
-      {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]}
+      {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
+      {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
+      {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]}
     ])
   ],
   providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService],

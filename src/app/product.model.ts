@@ -3,5 +3,6 @@ export class Product {
     price?: any;
     category?: any;
     imageURL?: any;
+    id?:any;
 
 }

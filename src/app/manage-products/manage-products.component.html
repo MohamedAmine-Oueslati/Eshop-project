@@ -5,17 +5,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th></th>
+            <th id="1">Title</th>
+            <th id="2">Price</th>
+            <th id="3"></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let product of products">
-            <td>{{product.title}}</td>
-            <td>{{product.price}}</td>
+            <td>{{product.data.title}}</td>
+            <td>{{product.data.price}}</td>
             <td>
-                <a routerLink="/Products">Edit</a>
+                <a [routerLink]="['/ManageProducts',product.id,product.data]">Edit</a>
             </td>
         </tr>
     </tbody>

@@ -13,6 +13,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies" : [
+              "@angular/fire/firestore",
+              "ng2-validation",
+              "babel-runtime/helpers/extends",
+              "babel-runtime/helpers/createClass",
+              "babel-runtime/helpers/slicedToArray",
+              "babel-runtime/core-js/get-iterator"
+              ],
             "outputPath": "dist/Eshop-project",
             "index": "src/index.html",
             "main": "src/main.ts",
