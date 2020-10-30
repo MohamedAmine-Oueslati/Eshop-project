@@ -1,5 +1,4 @@
-import { OrdersComponent } from './orders/orders.component';
-import { Category } from './category.model';
+import { Category } from '../models/category.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';

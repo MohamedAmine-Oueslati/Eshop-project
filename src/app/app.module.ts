@@ -12,17 +12,18 @@ import { CustomFormsModule } from 'ng2-validation';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+// import {DataTableModule} from 'angular-4-data-table';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
-import { AuthGuardService } from './auth-guard.service';
-import { UserService } from './user.service';
-import { ProductService } from './product.service';
-import { CategoryService } from './category.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
+import { ProductService } from './services/product.service';
+import { CategoryService } from './services/category.service';
 import { OrdersComponent } from './orders/orders.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { NewProductComponent } from './new-product/new-product.component';
@@ -45,6 +46,7 @@ import { NewProductComponent } from './new-product/new-product.component';
     CustomFormsModule,
     AppRoutingModule,
     NgbModule,
+    // DataTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

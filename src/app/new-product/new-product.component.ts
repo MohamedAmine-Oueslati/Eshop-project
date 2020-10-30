@@ -1,9 +1,9 @@
-import { Category } from './../category.model';
+import { Category } from './../models/category.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from './../category.service';
+import { CategoryService } from './../services/category.service';
 import { Component, OnInit } from '@angular/core';
 // import {NgForm} from '@angular/forms';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-new-product',
