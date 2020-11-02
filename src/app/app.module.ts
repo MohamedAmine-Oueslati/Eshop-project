@@ -18,15 +18,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { NewProductComponent } from './new-product/new-product.component';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
-import { OrdersComponent } from './orders/orders.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { NewProductComponent } from './new-product/new-product.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -53,16 +54,17 @@ import { NewProductComponent } from './new-product/new-product.component';
     // AngularFirestore,
     AngularFirestoreModule,
     RouterModule.forRoot([
-      {path: '' , component: HomeComponent },
+      {path: '' , component: ProductsComponent },
+      {path: 'ShoppingCart' , component: HomeComponent },
       {path: 'Login' , component: LoginComponent },
-      {path: 'Products' , component: ProductsComponent,canActivate: [AuthGuardService]  },
+      {path: 'Products' , component: ProductsComponent  },
       {path: 'Orders' , component: OrdersComponent},
       {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]}
     ])
   ],
-  providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService],
+  providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
