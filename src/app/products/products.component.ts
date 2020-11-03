@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
@@ -14,6 +14,8 @@ export class ProductsComponent {
   categories: any;
   category:any;
   filtered: any = [];
+  subcollection: any = [];
+
 
   constructor(
     private productService:ProductService,
@@ -30,9 +32,11 @@ export class ProductsComponent {
       this.products.filter((p: { data: { category: any; }; }) => p.data.category === this.category) :
       this.products
     })
+
+    this.cartService.getCart()
    }
 
   addToCart(product) {
+    this.cartService.addCart(product)
   }
-
 }
