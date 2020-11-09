@@ -60,12 +60,17 @@ export class ShoppingCartService {
     this.firestore.doc(`ShoppingCart/${id}/items/${idSub}`).update(product)
   }
 
-  addCart(product) {
+  addCart(product,j) {
     let count = 0
     this.cart1.take(1).subscribe(data => {
       data.forEach(p => {
         if (p.data.title === product.title) {
-          this.updateCart(p['id1'],{quantity : p.data.quantity + 1})
+          if (j === 1) {
+            this.updateCart(p['id1'],{quantity : p.data.quantity + 1})
+          }
+          else {
+            this.updateCart(p['id1'],{quantity : p.data.quantity - 1})
+          }
           count++
         }
       })

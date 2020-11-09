@@ -15,6 +15,7 @@ export class ProductsComponent {
   category:any;
   filtered: any = [];
   subcollection: any = [];
+  quantity:any = [];
 
 
   constructor(
@@ -36,7 +37,14 @@ export class ProductsComponent {
     this.cartService.getCart()
    }
 
-  addToCart(product) {
-    this.cartService.addCart(product)
+  addToCart(product,i,j) {
+    this.cartService.addCart(product,j)
+    this.cartService.cart1.subscribe(data => {
+      data.forEach(p => {
+        if (p.data.title === product.title) {
+          this.quantity[i] = p.data.quantity
+        }
+      })
+    })
   }
 }
