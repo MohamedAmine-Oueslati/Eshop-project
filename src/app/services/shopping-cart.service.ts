@@ -10,6 +10,9 @@ import 'rxjs/add/operator/take'
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  take(arg0: number) {
+    throw new Error('Method not implemented.');
+  }
   cart: Observable<Cart[]>
   cart1: Observable<Cart[]>
 
@@ -40,7 +43,7 @@ export class ShoppingCartService {
 
   getCart() {
     let id = this.getOrCreate()
-    this.cart1 = this.firestore.collection('ShoppingCart').doc(id).collection('items').snapshotChanges().pipe(map(actions => {
+    return this.firestore.collection('ShoppingCart').doc(id).collection('items').snapshotChanges().pipe(map(actions => {
       return (actions.map(b => {
         const data = b.payload.doc.data()
         const id1 = b.payload.doc.id
@@ -62,20 +65,20 @@ export class ShoppingCartService {
 
   addCart(product,j) {
     let count = 0
-    this.cart1.take(1).subscribe(data => {
+    this.getCart().take(1).subscribe(data => {
       data.forEach(p => {
         if (p.data.title === product.title) {
           if (j === 1) {
             this.updateCart(p['id1'],{quantity : p.data.quantity + 1})
           }
-          else {
+          else if (j=== -1 && p.data.quantity > 0) {
             this.updateCart(p['id1'],{quantity : p.data.quantity - 1})
           }
           count++
         }
       })
       if (count === 0) {
-        product['quantity'] = 1
+        product['quantity'] = 0
         this.addProduct(product)
       }
     })

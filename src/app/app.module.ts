@@ -54,10 +54,10 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     // AngularFirestore,
     AngularFirestoreModule,
     RouterModule.forRoot([
-      {path: '' , component: ProductsComponent },
-      {path: 'ShoppingCart' , component: HomeComponent },
+      {path: '' , component: HomeComponent },
+      {path: 'ShoppingCart' , component: ProductsComponent },
       {path: 'Login' , component: LoginComponent },
-      {path: 'Products' , component: ProductsComponent  },
+      // {path: 'Products' , component: ProductsComponent  },
       {path: 'Orders' , component: OrdersComponent},
       {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
