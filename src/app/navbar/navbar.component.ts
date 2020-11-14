@@ -9,7 +9,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  quantityCount:number;
+  quantityCount:number = 0;
 
   constructor(public auth :AuthService, private cartService: ShoppingCartService) {
    }
