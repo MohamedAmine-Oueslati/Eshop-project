@@ -30,6 +30,7 @@ export class ProductsComponent {
       })
     }
       this.products = res
+      console.log(res)
     })
    }
 

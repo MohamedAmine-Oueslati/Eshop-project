@@ -5,19 +5,23 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>Product</th>
-            <th>Quantity</th>
-            <th>U.Price</th>
-            <th>T.Price</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-right">U.Price</th>
+            <th class="text-right">T.Price</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let product of products; let i = index">
             <ng-container *ngIf="quantity[i] && quantity[i] !== 0" >
+                <td>
+                    <div [style.backgroundImage]="'url('+ product.imageURL +')'" class="thumbnail"></div>
+                </td>
             <td>{{product.title}}</td>
             <td><product-quantity [product]="product" [quantity]="quantity" [i]="i"></product-quantity></td>
-            <td>{{product.price | currency}}</td>
-            <td>{{product.price * quantity[i] | currency}}</td>
+            <td class="text-right">{{product.price | currency}}</td>
+            <td class="text-right">{{product.price * quantity[i] | currency}}</td>
         </ng-container>
         </tr>
     </tbody>
@@ -26,7 +30,8 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>{{sum | currency}}</th>
+            <th></th>
+            <th class="text-right">{{sum | currency}}</th>
         </tr>
     </tfoot>
 </table>
