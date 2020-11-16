@@ -23,8 +23,8 @@ export class ProductQuantityComponent {
     this.cartService.addCart(product,j)
     this.cartService.getCart().subscribe(data => {
       data.forEach(p => {
-        if (p.data.title === product.title) {
-          this.quantity[i] = p.data.quantity
+        if (p.title === product.title) {
+          this.quantity[i] = p.quantity
         }
       })
     })

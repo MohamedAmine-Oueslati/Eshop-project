@@ -49,10 +49,10 @@
     </thead>
     <tbody>
         <tr *ngFor="let product of filtered">
-            <td>{{product.data.title}}</td>
-            <td>{{product.data.price | currency:'USD':true}}</td>
+            <td>{{product.title}}</td>
+            <td>{{product.price | currency}}</td>
             <td>
-                <a [routerLink]="['/ManageProducts',product.id,product.data]">Edit</a>
+                <a [routerLink]="['/ManageProducts',product.id]">Edit</a>
             </td>
         </tr>
     </tbody>

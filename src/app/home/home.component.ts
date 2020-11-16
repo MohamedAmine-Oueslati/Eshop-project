@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.route.queryParamMap.subscribe(data => {
       this.category = data.get('category')
       this.filtered = (this.category) ? 
-      this.products.filter((p: { data: { category: any; }; }) => p.data.category === this.category) :
+      this.products.filter((p: { category: any }) => p.category === this.category) :
       this.products
     })
    }
@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
     this.cartService.addCart(product,j)
     this.cartService.getCart().subscribe(data => {
       data.forEach(p => {
-        if (p.data.title === product.title) {
-          this.quantity[i] = p.data.quantity
+        if (p.title === product.title) {
+          this.quantity[i] = p.quantity
         }
       })
     })

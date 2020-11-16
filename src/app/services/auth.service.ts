@@ -18,8 +18,8 @@ export class AuthService {
   }
 
   login(){
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
-    localStorage.setItem('returnUrl', returnUrl)
+    // let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
+    // localStorage.setItem('returnUrl', returnUrl)
     this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
   }
 

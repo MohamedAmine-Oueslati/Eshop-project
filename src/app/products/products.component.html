@@ -13,11 +13,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let product of products; let i = index">
-            <ng-container *ngIf="quantity[i] !== 0" >
-            <td>{{product.data.title}}</td>
-            <td><product-quantity [product]="product.data" [quantity]="quantity" [i]="i"></product-quantity></td>
-            <td>{{product.data.price | currency:'USD':true}}</td>
-            <td>{{product.data.price * quantity[i] | currency:'USD':true}}</td>
+            <ng-container *ngIf="quantity[i] && quantity[i] !== 0" >
+            <td>{{product.title}}</td>
+            <td><product-quantity [product]="product" [quantity]="quantity" [i]="i"></product-quantity></td>
+            <td>{{product.price | currency}}</td>
+            <td>{{product.price * quantity[i] | currency}}</td>
         </ng-container>
         </tr>
     </tbody>
@@ -26,7 +26,9 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>{{sum | currency:'USD':true}}</th>
+            <th>{{sum | currency}}</th>
         </tr>
     </tfoot>
 </table>
+<button (click)="Clear()"
+class="btn btn-danger btn-sm">Clear Shopping Cart</button>

@@ -3,10 +3,10 @@
       <div class="sticky-top">
       <div class="list-group">
         <a class="list-group-item list-group-item-action"
-        routerLink="/Products" [class.active]="!category"
+        routerLink="/" [class.active]="!category"
       >All Categories</a>
         <a *ngFor="let c of categories" class="list-group-item list-group-item-action"
-            routerLink="/Products"
+            routerLink="/"
             [queryParams]="{category: c.name}"
             [class.active]="category === c.name"
         >
@@ -20,16 +20,16 @@
         <ng-container *ngFor="let product of filtered; let i = index">
             <div class="col">
                 <div class="card" style="width: 20rem;">
-                  <img [src]="product.data.imageURL" class="card-img-top" alt="img">
+                  <img [src]="product.imageURL" class="card-img-top" alt="img">
                   <div class="card-body">
-                    <h5 class="card-title">{{product.data.title}}</h5>
-                    <p class="card-text">{{product.data.price | currency:'USD':true}}</p>
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">{{product.price | currency}}</p>
                   </div>
                   <div class="card-footer">
                     <button *ngIf="!quantity[i] && quantity[i] !== 0; else updateQuantity"
-                    (click)="GetOrUpdateCart(product.data,i)" class="btn btn-secondary btn-block">Get Quantity</button>
+                    (click)="GetOrUpdateCart(product,i)" class="btn btn-secondary btn-block">Get Quantity</button>
                     <ng-template #updateQuantity >
-                     <product-quantity [product]="product.data" [quantity]="quantity" [i]="i"></product-quantity>
+                     <product-quantity [product]="product" [quantity]="quantity" [i]="i"></product-quantity>
                     </ng-template>
                   </div>
                 </div>

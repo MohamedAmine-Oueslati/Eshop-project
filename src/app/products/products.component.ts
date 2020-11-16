@@ -19,30 +19,21 @@ export class ProductsComponent {
     this.productService.products.subscribe(res => {
       for (let i = 0 ; i < res.length ; i++ ) {
       this.cartService.getCart().subscribe(data => {
-           this.quantityCount = 0
-      this.sum = 0
+        this.quantityCount = 0
+        this.sum = 0
         data.forEach(p => {
-          if (res[i]['data'].title === p.data.title)
-          this.quantity[i] = p.data.quantity
-          this.quantityCount += p.data.quantity
-          this.sum += p.data.quantity * p.data.price
+          if (res[i].title === p.title)
+          this.quantity[i] = p.quantity
+          this.quantityCount += p.quantity
+          this.sum += p.quantity * p.price
           })
       })
     }
       this.products = res
     })
-      
-      
-    // this.cartService.getCart().subscribe(data => {
-    //   this.quantityCount = 0
-    //   this.sum = 0
-    //   data.forEach(item => {
-    //     this.quantityCount += item.data.quantity
-    //     if (item.data.quantity !== 0) {
-    //       this.items.push(item.data)
-    //     }
-    //     this.sum += item.data.quantity * item.data.price
-    //   })
-    // })
+   }
+
+   Clear() {
+     this.cartService.clearCart()
    }
 }

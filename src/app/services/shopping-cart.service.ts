@@ -10,21 +10,10 @@ import 'rxjs/add/operator/take'
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  take(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
   cart: Observable<Cart[]>
-  cart1: Observable<Cart[]>
 
   constructor(private firestore: AngularFirestore) {
-    this.cart = this.firestore.collection('ShoppingCart').snapshotChanges().pipe(map(actions => {
-      return (actions.map(b => {
-        const data = b.payload.doc.data()
-        const id = b.payload.doc.id
-        return { data, id }
-      })
-      )
-    }))
+    this.cart = this.firestore.collection('ShoppingCart').valueChanges({ idField: 'id' })
   }
 
   create() {
@@ -43,14 +32,7 @@ export class ShoppingCartService {
 
   getCart() {
     let id = this.getOrCreate()
-    return this.firestore.collection('ShoppingCart').doc(id).collection('items').snapshotChanges().pipe(map(actions => {
-      return (actions.map(b => {
-        const data = b.payload.doc.data()
-        const id1 = b.payload.doc.id
-        return { data, id1 }
-      })
-      )
-    }))
+    return this.firestore.collection('ShoppingCart').doc(id).collection('items').valueChanges({ idField: 'id1' })
   }
 
   addProduct(product) {
@@ -63,24 +45,42 @@ export class ShoppingCartService {
     this.firestore.doc(`ShoppingCart/${id}/items/${idSub}`).update(product)
   }
 
+  clearCart() {
+    let id = this.getOrCreate()
+    this.getCart().take(1).subscribe(data => {
+      data.forEach(p => {
+        this.firestore.collection('ShoppingCart').doc(id).collection('items').doc(p.id1).delete()
+      });
+    })
+  }
+
   addCart(product,j) {
     let count = 0
     this.getCart().take(1).subscribe(data => {
+      // add the subCollection 'Items' if it doesn't exist
+      if(data.length === 0) {
+        product['quantity'] = 0
+        this.addProduct(product)
+      }
+      else {
+        // increase or decrease the quantity of an existing product
       data.forEach(p => {
-        if (p.data.title === product.title) {
+        if (p.title === product.title) {
           if (j === 1) {
-            this.updateCart(p['id1'],{quantity : p.data.quantity + 1})
+            this.updateCart(p['id1'],{quantity : p.quantity + 1})
           }
-          else if (j=== -1 && p.data.quantity > 0) {
-            this.updateCart(p['id1'],{quantity : p.data.quantity - 1})
+          else if (j=== -1 && p.quantity > 0) {
+            this.updateCart(p['id1'],{quantity : p.quantity - 1})
           }
           count++
         }
       })
+      // add a product if it doesn't exist
       if (count === 0) {
         product['quantity'] = 0
         this.addProduct(product)
       }
+    }
     })
   }
 }

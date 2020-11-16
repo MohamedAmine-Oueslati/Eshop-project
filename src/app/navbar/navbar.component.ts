@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     this.cartService.getCart().subscribe(cart => {
       this.quantityCount = 0
       cart.forEach(item => {
-        this.quantityCount += item.data.quantity
+        this.quantityCount += item.quantity
       })
     })
   }

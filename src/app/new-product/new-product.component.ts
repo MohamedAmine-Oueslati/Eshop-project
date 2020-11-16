@@ -24,10 +24,15 @@ export class NewProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(res => this.categories = res)
-    this.route.params.subscribe((data) => {
-      const {title,category,price,imageURL} = data
+    this.route.params.subscribe(data => {
       this.id = data.id
-      this.product = {title, category,price, imageURL}
+      this.productService.products.subscribe(items => {
+        items.forEach(item => {
+          if (item.id === data.id) {
+            this.product = item
+          }
+        });
+      })
     })
   }
 
