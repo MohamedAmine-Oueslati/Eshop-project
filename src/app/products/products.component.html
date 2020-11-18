@@ -1,6 +1,8 @@
 <h1>Shopping Cart</h1>
 <ng-container>
     <p>You have {{quantityCount}} items in your shopping cart</p>
+    <button (click)="Clear()"
+class="btn btn-light btn-sm">Clear Shopping Cart</button>
 </ng-container>
 <table class="table">
     <thead>
@@ -35,5 +37,7 @@
         </tr>
     </tfoot>
 </table>
-<button (click)="Clear()"
-class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+<a [routerLink]="['/Check-Out']"
+class="btn btn-primary">
+Check Out
+</a>

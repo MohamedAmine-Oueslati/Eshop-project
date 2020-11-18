@@ -15,11 +15,7 @@ export class ShoppingCartService {
   constructor(private firestore: AngularFirestore) {
     this.cart = this.firestore.collection('ShoppingCart').valueChanges({ idField: 'id' })
   }
-
-  create() {
-    return this.firestore.collection('ShoppingCart').add({ dateCreated: new Date().getTime() })
-  }
-
+  
   private getOrCreate() {
     let cartId = localStorage.getItem('cartId')
     if (cartId) return cartId
@@ -29,7 +25,11 @@ export class ShoppingCartService {
       return res[0]['id']
     })
   }
-
+  
+  create() {
+    return this.firestore.collection('ShoppingCart').add({ dateCreated: new Date().getTime() })
+  }
+  
   getCart() {
     let id = this.getOrCreate()
     return this.firestore.collection('ShoppingCart').doc(id).collection('items').valueChanges({ idField: 'id1' })
@@ -49,7 +49,7 @@ export class ShoppingCartService {
     let id = this.getOrCreate()
     this.getCart().take(1).subscribe(data => {
       data.forEach(p => {
-        this.firestore.collection('ShoppingCart').doc(id).collection('items').doc(p.id1).delete()
+        this.firestore.doc(`ShoppingCart/${id}/items/${p.id1}`).delete()
       });
     })
   }
@@ -69,8 +69,13 @@ export class ShoppingCartService {
           if (j === 1) {
             this.updateCart(p['id1'],{quantity : p.quantity + 1})
           }
-          else if (j=== -1 && p.quantity > 0) {
+          else if (j=== -1 && p.quantity > 1) {
             this.updateCart(p['id1'],{quantity : p.quantity - 1})
+          }
+          else if(j === -1 && p.quantity === 1) {
+            this.updateCart(p['id1'],{quantity : p.quantity - 1})
+            let id = this.getOrCreate()
+            this.firestore.doc(`ShoppingCart/${id}/items/${p.id1}`).delete()
           }
           count++
         }

@@ -21,6 +21,8 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -28,7 +30,8 @@ import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './services/order.service';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     OrdersComponent,
     ManageProductsComponent,
     NewProductComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    CheckOutComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -57,16 +62,18 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     AngularFirestoreModule,
     RouterModule.forRoot([
       {path: '' , component: HomeComponent },
+      {path: 'Home' , component: HomeComponent },
       {path: 'ShoppingCart' , component: ProductsComponent },
       {path: 'Login' , component: LoginComponent },
-      // {path: 'Products' , component: ProductsComponent  },
+      {path: 'Check-Out' , component: CheckOutComponent,canActivate: [AuthGuardService]},
+      {path: 'Order-Success/:id' , component: OrderSuccessComponent,canActivate: [AuthGuardService]},
       {path: 'Orders' , component: OrdersComponent},
       {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]}
     ])
   ],
-  providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService, ShoppingCartService],
+  providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService, ShoppingCartService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
