@@ -45,8 +45,10 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
 
   async placeOrder(shipping) {
+    let d = new Date()
+    let date = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear()
     let orders = {
-      datePlaced: new Date().getTime(),
+      datePlaced: date,
       shipping: shipping,
       product: this.products,
       userId: this.userId

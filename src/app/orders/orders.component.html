@@ -1,1 +1,17 @@
-<p>orders works!</p>
+<h1>Orders</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customers</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of userOrders; let i = index">
+      <td>{{order.shipping.name}}</td>
+      <td>{{order.datePlaced}}</td>
+      <td><a [routerLink]="['/Order-History',i]">View</a></td>
+    </tr>
+  </tbody>
+</table>

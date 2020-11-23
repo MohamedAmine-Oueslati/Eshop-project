@@ -23,6 +23,8 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { NewProductComponent } from './new-product/new-product.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -31,7 +33,6 @@ import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
-import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     NewProductComponent,
     ProductQuantityComponent,
     CheckOutComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
       {path: 'Login' , component: LoginComponent },
       {path: 'Check-Out' , component: CheckOutComponent,canActivate: [AuthGuardService]},
       {path: 'Order-Success/:id' , component: OrderSuccessComponent,canActivate: [AuthGuardService]},
+      {path: 'Order-History/:id' , component: OrderHistoryComponent,canActivate: [AuthGuardService]},
       {path: 'Orders' , component: OrdersComponent},
       {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
       {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
