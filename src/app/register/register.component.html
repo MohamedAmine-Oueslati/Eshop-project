@@ -1,0 +1,25 @@
+<form class="form-signin" #f="ngForm" (ngSubmit)="Register(f.value)">
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    </div>
+  
+    <div class="form-label-group">
+      <input #email="ngModel" [(ngModel)]="register.email" name="email" type="email" id="email" class="form-control" placeholder="Email address" required>
+      <label for="email">Email address</label>
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is required.</div>
+    </div>
+
+    <div class="form-label-group">
+        <input #username="ngModel" [(ngModel)]="register.username" name="username" type="username" id="username" class="form-control" placeholder="Username" required>
+        <label for="username">Username</label>
+        <div class="alert alert-danger" *ngIf="username.touched && username.invalid">Username is required.</div>
+      </div>
+  
+    <div class="form-label-group">
+      <input #password="ngModel" [(ngModel)]="register.password" name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+      <label for="password">Password</label>
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">Password is required.</div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign Up</button>
+  </form>
+

@@ -7,14 +7,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  login:any = {};
 
   constructor(private auth :AuthService) { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    this.auth.login()
+  googleLogin() {
+    this.auth.googleLogin()
+  }
+
+  Login(data) {
+    this.auth.login(data.email,data.password).then(user => console.log(user))
   }
 
 }

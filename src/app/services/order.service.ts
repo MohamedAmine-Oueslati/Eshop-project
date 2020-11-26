@@ -22,7 +22,7 @@ export class OrderService {
     this.authService.user$.subscribe(user => {
       this.getOrders().subscribe(orders => {
         orders.forEach((order:any) => {
-          if (user.uid === order.userId) {
+          if (user?.uid === order.userId) {
             order.name = user.displayName
             userOrders.push(order)
           }

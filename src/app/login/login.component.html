@@ -1,16 +1,18 @@
-<form class="form-signin">
+<form class="form-signin" #f="ngForm" (ngSubmit)="Login(f.value)">
     <div class="text-center mb-4">
       <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
     </div>
   
     <div class="form-label-group">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputEmail">Email address</label>
+      <input #email="ngModel" [(ngModel)]="login.email" name="email" type="email" id="email" class="form-control" placeholder="Email address" required>
+      <label for="email">Email address</label>
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is required.</div>
     </div>
   
     <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <label for="inputPassword">Password</label>
+      <input #password="ngModel" [(ngModel)]="login.password" name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+      <label for="password">Password</label>
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">Password is required.</div>
     </div>
   
     <div class="checkbox mb-3">
@@ -18,8 +20,8 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-          <div id="gSignInWrapper" (click)="login()">
+          <div id="gSignInWrapper" (click)="googleLogin()">
                 <img src="https://i.pinimg.com/originals/81/8f/f7/818ff7a3edc40836182c585939fbe82a.png" alt="google">
             </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
   </form>

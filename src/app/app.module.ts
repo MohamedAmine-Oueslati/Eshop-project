@@ -33,6 +33,8 @@ import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
+import { RegisterComponent } from './register/register.component';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { OrderService } from './services/order.service';
     ProductQuantityComponent,
     CheckOutComponent,
     OrderSuccessComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -67,16 +70,17 @@ import { OrderService } from './services/order.service';
       {path: 'Home' , component: HomeComponent },
       {path: 'ShoppingCart' , component: ProductsComponent },
       {path: 'Login' , component: LoginComponent },
+      {path: 'Register' , component: RegisterComponent },
       {path: 'Check-Out' , component: CheckOutComponent,canActivate: [AuthGuardService]},
       {path: 'Order-Success/:id' , component: OrderSuccessComponent,canActivate: [AuthGuardService]},
       {path: 'Order-History/:id' , component: OrderHistoryComponent,canActivate: [AuthGuardService]},
       {path: 'Orders' , component: OrdersComponent},
-      {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService]},
-      {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService]},
-      {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService]}
+      {path: 'ManageProducts/New' , component: NewProductComponent,canActivate: [AuthGuardService,AdminAuthGuardService]},
+      {path: 'ManageProducts/:id' , component: NewProductComponent,canActivate: [AuthGuardService,AdminAuthGuardService]},
+      {path: 'ManageProducts' , component: ManageProductsComponent,canActivate: [AuthGuardService,AdminAuthGuardService]}
     ])
   ],
-  providers: [AuthService, AuthGuardService, CategoryService, ProductService, UserService, ShoppingCartService, OrderService],
+  providers: [AuthService, AuthGuardService,AdminAuthGuardService, CategoryService, ProductService, UserService, ShoppingCartService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

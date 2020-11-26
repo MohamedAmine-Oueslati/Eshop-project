@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
@@ -11,7 +12,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class NavbarComponent implements OnInit {
   quantityCount:number = 0;
 
-  constructor(public auth :AuthService, private cartService: ShoppingCartService) {
+  constructor(public auth :AuthService, private cartService: ShoppingCartService, private route:Router) {
    }
 
   ngOnInit() {
@@ -25,5 +26,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.auth.logout()
+    this.route.navigate(['Home'])
   }
 }

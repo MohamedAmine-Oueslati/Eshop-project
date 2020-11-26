@@ -36,7 +36,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           });
           this.products = items
           })
-      this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid)
+      this.userSubscription = this.authService.user$.subscribe(user => this.userId = user?.uid)
     }
 
   ngOnDestroy() {
