@@ -33,11 +33,11 @@ export class AuthService {
   async register(username,email,password){
     this.afAuth.createUserWithEmailAndPassword(email,password).then(user => console.log(user))
     await this.afAuth.onAuthStateChanged(function(user) {
-      // if(email === "wesamin@live.com") {
-      //   user.updateProfile({displayName:username,photoURL:"true"})
-      // } else {
+      if(email === "wesamin@live.com") {
+        user.updateProfile({displayName:username,photoURL:"true"})
+      } else {
         user.updateProfile({displayName:username})
-      // }
+      }
     })
   }
 

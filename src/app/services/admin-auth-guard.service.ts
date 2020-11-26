@@ -11,10 +11,10 @@ export class AdminAuthGuardService {
   constructor(private auth:AuthService, private router:Router) { }
 
   canActivate() {
-    // return this.auth.user$.map(user => {
-    //   console.log(user.photoURL)
-    //   if (user.photoURL === "true") { return true}
-    //     return false;
-    // })
+    return this.auth.user$.map(user => {
+      console.log(user.photoURL)
+      if (user.photoURL === "true") { return true}
+        return false;
+    })
   }
 }
